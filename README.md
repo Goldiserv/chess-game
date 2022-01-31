@@ -1,1 +1,1 @@
-# chess-game
+# home for small example projects
