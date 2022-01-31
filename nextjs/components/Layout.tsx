@@ -36,6 +36,15 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
           <a>Ticker Tool</a>
         </Link>{" "}
         |{" "}
+        <Link href="/getStaticProps">
+          <a>getStaticProps</a>
+        </Link>{" "}
+        |{" "}
+        <Link href="/api-hook">
+          <a>api-hook</a>
+        </Link>{" "}
+        |{" "}
+        
       </nav>
     </header>
     {children}

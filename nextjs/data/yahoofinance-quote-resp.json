@@ -1,0 +1,114 @@
+{
+    "data": {
+        "quoteResponse": {
+            "result": [{
+                "language": "en-US",
+                "region": "US",
+                "quoteType": "EQUITY",
+                "quoteSourceName": "Nasdaq Real Time Price",
+                "triggerable": true,
+                "regularMarketChangePercent": 5.306327,
+                "regularMarketTime": 1643641217,
+                "regularMarketPrice": 891.2601,
+                "regularMarketDayHigh": 897.75,
+                "regularMarketDayRange": "862.05 - 897.75",
+                "regularMarketDayLow": 862.05,
+                "regularMarketVolume": 6753552,
+                "regularMarketPreviousClose": 846.35,
+                "bid": 889.59,
+                "ask": 889.64,
+                "bidSize": 14,
+                "askSize": 8,
+                "fullExchangeName": "NasdaqGS",
+                "financialCurrency": "USD",
+                "regularMarketOpen": 872.71,
+                "averageDailyVolume3Month": 28411377,
+                "averageDailyVolume10Day": 33714840,
+                "fiftyTwoWeekLowChange": 351.77008,
+                "fiftyTwoWeekLowChangePercent": 0.6520419,
+                "fiftyTwoWeekRange": "539.49 - 1243.49",
+                "fiftyTwoWeekHighChange": -352.22992,
+                "fiftyTwoWeekHighChangePercent": -0.28325915,
+                "fiftyTwoWeekLow": 539.49,
+                "fiftyTwoWeekHigh": 1243.49,
+                "earningsTimestamp": 1643213340,
+                "earningsTimestampStart": 1650916800,
+                "earningsTimestampEnd": 1651262400,
+                "trailingPE": 181.8898,
+                "currency": "USD",
+                "firstTradeDateMilliseconds": 1277818200000,
+                "priceHint": 2,
+                "regularMarketChange": 44.910095,
+                "epsTrailingTwelveMonths": 4.9,
+                "epsForward": 11.73,
+                "epsCurrentYear": 9.99,
+                "priceEpsCurrentYear": 89.215225,
+                "sharesOutstanding": 1004259968,
+                "bookValue": 30.069,
+                "fiftyDayAverage": 1035.005,
+                "fiftyDayAverageChange": -143.74493,
+                "fiftyDayAverageChangePercent": -0.13888332,
+                "twoHundredDayAverage": 814.3467,
+                "twoHundredDayAverageChange": 76.91339,
+                "twoHundredDayAverageChangePercent": 0.09444797,
+                "marketCap": 895056805888,
+                "forwardPE": 75.981255,
+                "priceToBook": 29.640495,
+                "sourceInterval": 15,
+                "exchangeDataDelayedBy": 0,
+                "pageViewGrowthWeekly": 1.0726329,
+                "averageAnalystRating": "2.7 - Hold",
+                "tradeable": false,
+                "marketState": "REGULAR",
+                "exchange": "NMS",
+                "shortName": "Tesla, Inc.",
+                "longName": "Tesla, Inc.",
+                "messageBoardId": "finmb_27444752",
+                "exchangeTimezoneName": "America/New_York",
+                "exchangeTimezoneShortName": "EST",
+                "gmtOffSetMilliseconds": -18000000,
+                "market": "us_market",
+                "esgPopulated": false,
+                "displayName": "Tesla",
+                "symbol": "TSLA"
+            }],
+            "error": null
+        }
+    },
+    "status": 200,
+    "statusText": "",
+    "headers": {
+        "content-length": "2002",
+        "content-type": "application/json"
+    },
+    "config": {
+        "transitional": {
+            "silentJSONParsing": true,
+            "forcedJSONParsing": true,
+            "clarifyTimeoutError": false
+        },
+        "transformRequest": [
+            null
+        ],
+        "transformResponse": [
+            null
+        ],
+        "timeout": 0,
+        "xsrfCookieName": "XSRF-TOKEN",
+        "xsrfHeaderName": "X-XSRF-TOKEN",
+        "maxContentLength": -1,
+        "maxBodyLength": -1,
+        "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "x-api-key": "removed manually"
+        },
+        "method": "get",
+        "url": "https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=TSLA",
+        "params": {
+            "modules": "defaultKeyStatistics,assetProfile"
+        }
+    },
+    "request": {
+
+    }
+}
