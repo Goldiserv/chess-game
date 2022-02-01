@@ -14,4 +14,8 @@
     a {
         @apply text-blue-600 underline;
     }
+    /* ul,
+    ol {
+        list-style: revert;
+    } */
 }
