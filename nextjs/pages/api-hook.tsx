@@ -15,11 +15,16 @@ function Index() {
       <Layout title="API + Hook">
         <h1 className="">API + Hook</h1>
         <p className="">Example: Call API and save to react hook</p>
-        <p>API result is: {JSON.stringify(apiRes)}</p>
+        <p>
+          API result is:
+          <pre>
+            <code>{JSON.stringify(apiRes, null, 4)}</code>
+          </pre>
+        </p>
         <p>
           <Link href="/">
             <button className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded">
-              Go home
+              Home
             </button>
           </Link>
           <button

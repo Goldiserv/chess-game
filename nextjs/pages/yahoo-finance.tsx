@@ -10,11 +10,11 @@ function Index() {
     <div>
       <Layout title="Yahoo Finance">
         <h1 className="">Yahoo Finance</h1>
-        <p className="">
-          This calls Yahoo Finance API
-        </p>
-        <pre>{JSON.stringify(apiRes)}</pre>
-
+        <p className="">This calls Yahoo Finance API</p>
+        <pre>
+          <code>{JSON.stringify(apiRes, null, 5)}</code>
+        </pre>
+        Ticker symbol:
         <input
           type="text"
           className="border-2"
@@ -22,7 +22,7 @@ function Index() {
           name="stock-ticker-input"
         />
 
-        <button
+        {/* <button
           className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded"
           onClick={async () => {
             let x = document.getElementById(
@@ -32,7 +32,7 @@ function Index() {
           }}
         >
           Log ticker value
-        </button>
+        </button> */}
 
         <button
           className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded"
@@ -58,11 +58,6 @@ function Index() {
           Call Yahoo API
         </button>
 
-        <Link href="/">
-          <button className="ml-2 text-white bg-blue-600 hover:bg-blue-700 p-2 rounded">
-            Go home
-          </button>
-        </Link>
       </Layout>
     </div>
   );

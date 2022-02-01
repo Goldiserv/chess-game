@@ -10,7 +10,7 @@ const TickerToolPage = () => (
     {/* <p>{JSON.stringify(process.env)}</p> */}
     <p>
       {/* <Link href="/">
-        <button className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded">Go home</button>
+        <button className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded">Home</button>
       </Link> */}
     </p>
   </Layout>

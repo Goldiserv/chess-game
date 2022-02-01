@@ -22,35 +22,13 @@ const Layout = ({ children, title = "This is the default title" }: Props) => (
         |{" "}
         <Link href="/about">
           <a>About</a>
-        </Link>{" "}
-        |{" "}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{" "}
-        | <a href="/api/users">Users API</a> |{" "}
-        <Link href="/chess-drag-drop">
-          <a>Chess</a>
-        </Link>{" "}
-        |{" "}
-        <Link href="/ticker-tool">
-          <a>Ticker Tool</a>
-        </Link>{" "}
-        |{" "}
-        <Link href="/getStaticProps">
-          <a>getStaticProps</a>
-        </Link>{" "}
-        |{" "}
-        <Link href="/api-hook">
-          <a>api-hook</a>
-        </Link>{" "}
-        |{" "}
-        
+        </Link>
       </nav>
     </header>
     {children}
     <footer>
-      <hr />
-      <span>Footer</span>
+      <hr className="pb-2"/>
+      <span className="">Footer</span>
     </footer>
   </div>
 );

@@ -9,11 +9,11 @@ function Index({ stars }) {
         <p className="">
           This page uses getStaticProps to return async api call result before page load
         </p>
-        <p>Next.js has {stars} ⭐️</p>
+        <p>Next.js has {stars} ⭐️ {"<--"} no. stars generated via static props</p>
         <p>
           <Link href="/">
             <button className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded">
-              Go home
+              Home
             </button>
           </Link>
         </p>
