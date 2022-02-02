@@ -3,9 +3,6 @@ import Layout from "../components/Layout";
 import Head from "next/head";
 import Script from "next/script";
 
-// export const FbSdkScriptContext = createContext(null);
-// export const useFbSdkScriptContext = () => useContext(FbSdkScriptContext);
-
 function Index() {
   // useEffect(() => {
   //   const script = document.createElement("script");
@@ -27,7 +24,7 @@ function Index() {
           async
           // preload="true"
           src="https://exporter.textframe.app/wordpress.js"
-        />
+        />        
       </Head>
 
       <Layout title="Textframe">

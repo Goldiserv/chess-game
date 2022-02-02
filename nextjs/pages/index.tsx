@@ -34,12 +34,23 @@ const IndexPage = () => (
         <b>Ticker Tools</b>
         <li>
           <Link href="/ticker-tool">
-            <a>Ticker notification (not started)</a>
+            <a>Ticker Tool</a>
           </Link>
         </li>
         <li>
           <Link href="/yahoo-finance">
             <a>yahoo-finance</a>
+          </Link>
+        </li>
+        <b>3rd party integrations</b>
+        <li>
+          <Link href="/twilio">
+            <a>Twilio</a>
+          </Link>
+        </li>
+        <li>
+          <Link href="/stripe">
+            <a>Stripe</a>
           </Link>
         </li>
       </ul>
@@ -54,6 +65,7 @@ const IndexPage = () => (
             <li>Sharpen a paragraph of text</li>
             <li>Get dates ready for Excel</li>
             <li>Pixel art generator</li>
+            <li>Voice transformation</li>
           </ul>
         </li>
         <li>
