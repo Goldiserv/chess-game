@@ -19,13 +19,11 @@ function Index() {
     <div>
       <Head>
         <title>My page title</title>
-        {/* <script async src="https://exporter.textframe.app/exporter.js"></script> */}
       </Head>
       <Script
         src="https://exporter.textframe.app/exporter.js"
         strategy={"beforeInteractive"}
       />
-
       <Layout title="Textframe">
         <h1 className="">Textframe</h1>
         <p className="">Embed component from another app</p>
