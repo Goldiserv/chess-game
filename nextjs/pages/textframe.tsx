@@ -19,26 +19,24 @@ function Index() {
     <div>
       <Head>
         <title>My page title</title>
-        {/* <meta name="viewport" content="initial-scale=1.0, width=device-width" /> */}
-        <Script
-          async
-          // preload="true"
-          src="https://exporter.textframe.app/wordpress.js"
-        />        
       </Head>
-
+      <Script
+        src="https://exporter.textframe.app/exporter.js"
+        strategy={"beforeInteractive"}
+      />
       <Layout title="Textframe">
         <h1 className="">Textframe</h1>
         <p className="">Embed component from another app</p>
-
-        <div style={{ display: "none" }} id="id-container">
-          1956516571
-        </div>
         <div
-          style={{ width: "100vw", maxWidth: "initial" }}
-          id="textframe-div"
-          className="wp-block-create-block-textframe"
-        ></div>
+          style={{
+            marginLeft: "40px",
+            marginRight: "40px",
+          }}
+        >
+          <div style={{ display: "none" }} id="textframe-container">
+            1956516571
+          </div>
+        </div>
       </Layout>
     </div>
   );
