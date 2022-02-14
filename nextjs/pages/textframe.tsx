@@ -1,25 +1,11 @@
 import Layout from "../components/Layout";
 //import { useEffect } from "react"; // useContext, createContext
-import Head from "next/head";
 import Script from "next/script";
 
 function Index() {
-  // useEffect(() => {
-  //   const script = document.createElement("script");
-  //   script.src = "https://exporter.textframe.app/wordpress.js";
-  //   script.async = true;
-  //   //script.preload = "true";
-  //   document.head.appendChild(script);
-  //   return () => {
-  //     document.head.removeChild(script);
-  //   };
-  // }, []);
 
   return (
     <div>
-      <Head>
-        <title>My page title</title>
-      </Head>
       <Script
         src="https://exporter.textframe.app/exporter.js"
         strategy={"beforeInteractive"}
