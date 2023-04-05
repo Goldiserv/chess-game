@@ -22,7 +22,7 @@ function Index() {
           </pre>
         </p>
         <p>
-          <Link href="/">
+          <Link legacyBehavior href="/">
             <button className="text-white bg-blue-600 hover:bg-blue-700 p-2 rounded">
               Home
             </button>

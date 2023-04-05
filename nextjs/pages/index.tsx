@@ -9,7 +9,7 @@ const IndexPage = () => (
       <ul>
         <b>Programming patterns / features</b>
         <li>
-          <Link href="/users">
+          <Link legacyBehavior href="/users">
             <a>Users List</a>
           </Link>
         </li>
@@ -17,40 +17,45 @@ const IndexPage = () => (
           <a href="/api/users">Users API</a>
         </li>
         <li>
-          <Link href="/chess-drag-drop">
+          <Link legacyBehavior href="/chess-drag-drop">
             <a>Chess drag drop</a>
           </Link>
         </li>
         <li>
-          <Link href="/getStaticProps">
+          <Link legacyBehavior href="/getStaticProps">
             <a>getStaticProps</a>
           </Link>
         </li>
         <li>
-          <Link href="/api-hook">
+          <Link legacyBehavior href="/api-hook">
             <a>api-hook</a>
           </Link>
         </li>
         <b>Ticker Tools</b>
         <li>
-          <Link href="/ticker-tool">
+          <Link legacyBehavior href="/ticker-tool">
             <a>Ticker Tool</a>
           </Link>
         </li>
         <li>
-          <Link href="/yahoo-finance">
+          <Link legacyBehavior href="/yahoo-finance">
             <a>yahoo-finance</a>
           </Link>
         </li>
         <b>3rd party integrations</b>
         <li>
-          <Link href="/twilio">
+          <Link legacyBehavior href="/twilio">
             <a>Twilio</a>
           </Link>
         </li>
         <li>
           <Link href="/stripe">
-            <a>Stripe</a>
+            Stripe
+          </Link>
+        </li>
+        <li>
+          <Link href="/whatsapp">
+            WhatsApp
           </Link>
         </li>
       </ul>
