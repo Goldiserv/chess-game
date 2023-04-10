@@ -1,5 +1,8 @@
-Run server:
-node index.ts
+Requirements:
+npm i -g ts-node
+
+Run code:
+node-ts index.ts
 
 Package:
 cd dist

@@ -1,0 +1,86 @@
+import express, { Express, Request, Response } from "express";
+import dotenv from "dotenv";
+import QRCodeTerminal from "qrcode-terminal";
+import QRCode from "qrcode";
+import { Client } from "whatsapp-web.js";
+import path from "path";
+import fs from "fs";
+import sleep from "./util/sleep";
+
+dotenv.config();
+const port = process.env.PORT;
+const publicFolder = path.join(__dirname, "../public/");
+
+// app setup
+const app: Express = express();
+app.use(express.static(publicFolder));
+app.set("view engine", "ejs");
+
+const qrToFile = (qrPath: string, qr: string) => {
+  // console.log('qrToFile string', QRCode.toString(qr));
+  QRCode.toFile(
+    qrPath,
+    qr ? qr : "Dummy QR value",
+    {
+      errorCorrectionLevel: "H",
+    },
+    function (err) {
+      if (err) throw err;
+      qr ? console.log("QR code saved!") : console.log("Dummy QR code saved!");
+      return true;
+    }
+  );
+  return false;
+};
+
+app.get("/", (req: Request, res: Response) => {
+  // // Test QR
+  // QRcode.generate("test qr", { small: true });
+
+  let data = {
+    myQrPath: "/qrNotLoaded.png",
+  };
+
+  if (!fs.existsSync(publicFolder)) fs.mkdirSync(publicFolder);
+
+  res.render("index", { myQrPath: data.myQrPath, msg: "no qr loaded" });
+
+  // window.location.reload(); // <--- Cause the browser to reload the EJS
+});
+
+app.post("/qr", (req: Request, res: Response) => {
+  console.log("/qr POST");
+
+  const qrPath = path.join(publicFolder, "qr.png");
+
+  // // Whatsapp.js
+  const client = new Client({});
+
+  client.on("qr", (qr) => {
+    //via "qrcode-terminal";
+    // QRCodeTerminal.generate(qr, {small: true});
+
+    // Generate and display QR code for user to scan
+    console.log("QR Code:", qr);
+    let success = qrToFile(qrPath, qr);
+    // sleep(4000);
+    res.render("index", { myQrPath: "/qr.png", msg: "open whatsapp and scan this QR, then scan the next QR via 'link device' " });
+    // if (success) res.render("index", { myQrPath: "/qr.png", msg: "success" });
+    // else res.render("index", { myQrPath: "/qrNotLoaded.png", msg: "failed to load qr" });
+    window.location.reload(); // <--- Cause the browser to reload the EJS
+  });
+
+  client.on("ready", () => {
+    console.log("Client is ready!");
+
+    // sleep(3000)
+    // client.logout();
+  });
+  client.initialize();
+
+  // res.render("index", { myQrPath: data.myQrPath });
+});
+
+app.listen(port, () => {
+  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+});
