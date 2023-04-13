@@ -8,6 +8,7 @@ export interface Person {
   birthday: string;
   phone: string;
   message: string;
+  groupId: string;
 }
 
 // Read from a CSV file
@@ -34,6 +35,7 @@ export const writeCsv = async (
       { id: "birthday", title: "Birthday" },
       { id: "phone", title: "Phone" },
       { id: "message", title: "Message" },
+      { id: "groupId", title: "groupId" },
     ],
   });
   return csvWriter.writeRecords(data);

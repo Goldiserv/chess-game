@@ -10,15 +10,31 @@ dotenv.config();
 const prompt = require("prompt-sync")({ sigint: true });
 
 const sendMessage = async (number: string, message: string) => {
-  const chat = await client.getChatById(number + '@c.us');
+  const chat = await client.getChatById(number + "@c.us");
   chat.sendMessage(message);
+};
+
+const sendMessageGroup = async (groupId: string, message: string) => {
+  const chat = await client.getChatById(groupId + "@g.us");
+  chat.sendMessage(message);
+};
+
+const getChatGroupIds = async (client: Client) => {
+  const chats = await client.getChats();
+  chats
+    .filter((chat) => chat.isGroup)
+    .map((chat) => {
+      console.log({
+        id: chat.id._serialized, // ***********-**********@g.us
+        name: chat.name, // Your Group Name
+      });
+    });
 };
 
 const closeApp = (client?: Client) => {
   console.log("\nClose the browser window to exit");
   // client.destroy();
 };
-
 
 const client = new Client({
   authStrategy: new LocalAuth(),
@@ -58,6 +74,9 @@ client.on("ready", async () => {
 
   // check csv
   const filename = path.join(__dirname, "birthdays.csv");
+
+  // // list chat ids
+  // getChatGroupIds(client);
 
   async function startProgram() {
     const matchedPeople = await getBirthdayRows(filename);
@@ -107,9 +126,18 @@ client.on("ready", async () => {
           closeApp(client);
         } else if (userInput === 1) {
           const ph = sanitisePhoneNumber(remainingPeople[0].phone);
-          await sendMessage(ph, remainingPeople[0].message);
+          const groupId = remainingPeople[0].groupId;
 
-          console.log("\nSent!");
+          if (groupId) {
+            await sendMessageGroup(groupId, remainingPeople[0].message);
+
+            console.log("\nSent to group!");
+          } else if (ph !== null) {
+            await sendMessage(ph, remainingPeople[0].message);
+            console.log("\nSent to ph! ", ph);
+          } else if (ph === null)
+            console.log("PH number error: ", remainingPeople[0].phone);
+
           remainingPeople.shift();
         } else if (userInput === 2) {
           //
@@ -135,13 +163,13 @@ client.on("ready", async () => {
   startProgram();
 });
 
-client.on("message", async (msg) => {
-  console.log("MESSAGE RECEIVED", msg);
+// client.on("message", async (msg) => {
+//   console.log("MESSAGE RECEIVED", msg);
 
-  if (msg.body === "!reaction") {
-    msg.react("👍");
-  }
-});
+//   if (msg.body === "!reaction") {
+//     msg.react("👍");
+//   }
+// });
 
 client.on("message_create", (msg) => {
   // Fired on all message creations, including your own
@@ -150,18 +178,18 @@ client.on("message_create", (msg) => {
   }
 });
 
-client.on("message_revoke_everyone", async (after, before) => {
-  // Fired whenever a message is deleted by anyone (including you)
-  console.log(after); // message after it was deleted.
-  if (before) {
-    console.log(before); // message before it was deleted.
-  }
-});
+// client.on("message_revoke_everyone", async (after, before) => {
+//   // Fired whenever a message is deleted by anyone (including you)
+//   console.log(after); // message after it was deleted.
+//   if (before) {
+//     console.log(before); // message before it was deleted.
+//   }
+// });
 
-client.on("message_revoke_me", async (msg) => {
-  // Fired whenever a message is only deleted in your own view.
-  console.log(msg.body); // message before it was deleted.
-});
+// client.on("message_revoke_me", async (msg) => {
+//   // Fired whenever a message is only deleted in your own view.
+//   console.log(msg.body); // message before it was deleted.
+// });
 
 client.on("disconnected", (reason) => {
   console.log("Client was logged out", reason);

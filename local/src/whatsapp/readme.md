@@ -2,7 +2,7 @@ Requirements:
 npm i -g ts-node
 
 Run code:
-node-ts index.ts
+ts-node .\index.ts
 
 Package:
 cd dist
