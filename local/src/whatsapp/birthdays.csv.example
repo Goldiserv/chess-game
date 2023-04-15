@@ -1,4 +1,4 @@
-name,birthday,phone,message
-Alice,1990-04-10,+65 12341234,"Happy birthday Alice! 🎉"
+name,birthday,phone,message,groupId
+Alice,1990-04-10,+65 12341234,"Happy birthday Alice! 🎉",61411551884-1119376111
 Bob,1985-04-20,+61 12341234,"Happy birthday Bob! 🎉"
 Charlie,1995-01-01,+65 12341234,"Happy birthday Charlie! 🎉"

@@ -1,7 +1,7 @@
 import csvParser from "csv-parser";
 import { createObjectCsvWriter } from "csv-writer";
 import fs from "fs";
-import path from "path";
+// import path from "path";
 
 export interface Person {
   name: string;
@@ -10,6 +10,7 @@ export interface Person {
   message: string;
   groupId: string;
 }
+
 
 // Read from a CSV file
 export const readCsv = async (filename: string): Promise<Person[]> => {
