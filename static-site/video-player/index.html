@@ -1,0 +1,138 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My YouTube Video Player</title>
+    <script>
+      // Function to save video link to local storage
+      function saveVideoLink() {
+        var videoLink = document.getElementById("videoLink").value;
+        videoLink = videoLink.replace("https://youtu.be/", "").trim();
+        if (videoLink && videoLink.length > 0) {
+          var savedVideos = localStorage.getItem("savedVideos");
+          savedVideos = savedVideos ? JSON.parse(savedVideos) : [];
+          savedVideos.push(videoLink);
+          localStorage.setItem("savedVideos", JSON.stringify(savedVideos));
+          //
+          updateSavedVideosList();
+        } else {
+          alert("Please provide a video link");
+        }
+      }
+
+      function trimDelete(videoLink) {
+        var urlLen = videoLink.length;
+        var videoLinkResp = videoLink.substring(0, urlLen - "Delete".length);
+        return videoLinkResp;
+      }
+
+      function test() {
+        var videoIframe = document.getElementById("video");
+        videoIframe.parentNode.removeChild(videoIframe); // Remove existing iframe
+      }
+
+      function test2() {
+        console.log({ localStorage });
+        localStorage.removeItem("savedVideos");
+        localStorage.removeItem("videoLink");
+      }
+
+      function loadVideoLink(videoLink) {
+        // var videoLink = localStorage.getItem("videoLink");
+        console.log({ videoLink }, { localStorage });
+        if (videoLink) {
+          var videoIframe = document.getElementById("video");
+          try {
+            videoIframe.parentNode.removeChild(videoIframe); // Remove existing iframe
+          } catch (e) {
+            console.log({ e });
+          }
+          videoIframe = document.createElement("iframe"); // Create new iframe
+          videoIframe.id = "video";
+          videoIframe.width = "560";
+          videoIframe.height = "315";
+          videoIframe.src =
+            "https://www.youtube.com/embed/" + videoLink + "?rel=0";
+          videoIframe.frameBorder = "0";
+          videoIframe.allow =
+            "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          videoIframe.title = "YouTube video player";
+          videoIframe.allowFullscreen = true;
+          document.getElementById("videoContainer").appendChild(videoIframe); // Append new iframe to container
+        }
+      }
+
+      // Function to delete video link from local storage
+      function deleteVideoLink(videoLink) {
+        var savedVideos = localStorage.getItem("savedVideos");
+        savedVideos = savedVideos ? JSON.parse(savedVideos) : [];
+        var index = savedVideos.indexOf(videoLink);
+        if (index > -1) {
+          savedVideos.splice(index, 1);
+          localStorage.setItem("savedVideos", JSON.stringify(savedVideos));
+          updateSavedVideosList();
+        }
+      }
+
+      // Function to update the saved videos list
+      function updateSavedVideosList() {
+        var savedVideos = localStorage.getItem("savedVideos");
+        savedVideos = savedVideos ? JSON.parse(savedVideos) : [];
+        var savedVideosList = document.getElementById("savedVideosList");
+        savedVideosList.innerHTML = "";
+        for (var i = 0; i < savedVideos.length; i++) {
+          var listItem = document.createElement("li");
+          listItem.textContent = savedVideos[i];
+          listItem.onclick = function () {
+            loadVideoLink(trimDelete(this.textContent));
+          };
+          var deleteButton = document.createElement("button");
+          deleteButton.textContent = "Delete";
+          deleteButton.onclick = function (event) {
+            deleteVideoLink(trimDelete(this.parentNode.textContent));
+          };
+          listItem.appendChild(deleteButton);
+          savedVideosList.appendChild(listItem);
+        }
+      }
+
+      // Function to load video link from saved videos list
+      function loadVideoFromList(videoLink) {
+        document.getElementById("videoLink").value = videoLink;
+        document.getElementById("video").src = videoLink;
+      }
+
+      // On initial page load
+      window.onload = function () {
+        updateSavedVideosList();
+      };
+    </script>
+  </head>
+  <body>
+    <h1>My YouTube Video Player</h1>
+    <label for="videoLink">Video Link:</label>
+    <input type="text" id="videoLink" />
+    <button onclick="saveVideoLink()">Save Video Link</button>
+    <!-- <button onclick="test()">test</button>-->
+    <!-- <button onclick="test2()">test2</button>  -->
+    <br /><br />
+    <h2>Saved Videos:</h2>
+    <ol id="savedVideosList"></ol>
+    <br /><br />
+
+    <h2>Video Player:</h2>
+    <div id="videoContainer">
+      <iframe
+        id="video"
+        width="560"
+        height="315"
+        src=""
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </body>
+</html>
