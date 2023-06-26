@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ce:GetCostAndUsage",
+                "ce:GetDimensionValues",
+                "ce:GetReservationUtilization",
+                "ce:GetTags",
+                "ce:GetRightsizingRecommendation",
+                "ce:GetSavingsPlansUtilization",
+                "ce:GetSavingsPlansCoverage",
+                "ce:GetAnomalyMonitors",
+                "ce:GetAnomalySubscriptions"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
