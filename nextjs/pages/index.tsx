@@ -49,14 +49,13 @@ const IndexPage = () => (
           </Link>
         </li>
         <li>
-          <Link href="/stripe">
-            Stripe
-          </Link>
+          <Link href="/stripe">Stripe</Link>
         </li>
         <li>
-          <Link href="/whatsapp">
-            WhatsApp
-          </Link>
+          <Link href="/whatsapp">WhatsApp</Link>
+        </li>
+        <li>
+          <Link href="/nodeflow">nodeflow</Link>
         </li>
       </ul>
 
