@@ -57,25 +57,6 @@ export default function Out({ id, data }) {
           refresh
         </button>
 
-        <button
-        className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 text-xs rounded"
-          onClick={() => {
-            const edgeId = "amp2->output";
-            const sourceNodes = deleteEdge(edgeId);
-          }}
-        >
-          del edge
-        </button>
-
-        
-        <button
-        className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 text-xs rounded"
-          onClick={() => { 
-            
-          }}
-        >
-          list edge
-        </button>
       </div>
     </div>
   );

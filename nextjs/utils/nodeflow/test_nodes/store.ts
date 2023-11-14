@@ -21,20 +21,30 @@ export const useStore = create((set: any, get: any) => ({
       type: "amp",
       data: { gain: 10 },
       position: { x: 200, y: 100 },
+      dragHandle: '.header-drag-handle',
     },
     {
       id: "amp2",
       type: "amp",
       data: { gain: 15 },
       position: { x: 200, y: 250 },
+      dragHandle: '.header-drag-handle',
     },
     { id: "output", type: "out", position: { x: 400, y: 250 } },
   ],
   edges: [
     { id: "osc->amp", source: "osc", target: "amp" },
-    { id: "amp->output", source: "amp", target: "output" },
-    { id: "amp2->output", source: "amp2", target: "output" },
+    { id: "amp->output", source: "amp", target: "output", type: 'edgebutton' },
+    { id: "amp2->output", source: "amp2", target: "output", type: 'edgebutton' },
   ],
+  getSelectedEdges() {
+    const edges = get().edges;
+
+    const filteredEdges = edges.filter((edge) => edge.selected === true);
+
+    return filteredEdges;
+  },
+  
 
   // calculations
   getPreviousNodes(nodeId: string) {
@@ -116,7 +126,7 @@ export const useStore = create((set: any, get: any) => ({
 
   addEdge(data) {
     const id = nanoid(6);
-    const edge = { id, ...data };
+    const edge = { id, ...data, type: 'edgebutton' };
     set({ edges: [edge, ...get().edges] });
     // add code below for on connect code if required
   },
