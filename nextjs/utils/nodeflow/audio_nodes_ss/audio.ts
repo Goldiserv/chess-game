@@ -12,7 +12,7 @@ amp.gain.value = 0.5;
 osc.connect(amp);
 amp.connect(context.destination);
 
-nodes.set("osc", osc);
+nodes.set("prompt", osc);
 nodes.set("amp", amp);
 nodes.set("output", context.destination);
 
@@ -26,7 +26,7 @@ export function toggleAudio() {
 
 export function createAudioNode(id, type, data) {
   switch (type) {
-    case "osc": {
+    case "prompt": {
       const node = context.createOscillator();
       node.frequency.value = data.frequency;
       node.type = data.type;

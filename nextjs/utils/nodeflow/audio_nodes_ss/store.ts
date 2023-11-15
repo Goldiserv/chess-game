@@ -14,8 +14,8 @@ import {
 export const useStore = create((set: any, get: any) => ({
   nodes: [
     {
-      id: "osc",
-      type: "osc",
+      id: "prompt",
+      type: "prompt",
       data: { frequency: 220, type: "square" },
       position: { x: 0, y: 0 },
     },
@@ -28,7 +28,7 @@ export const useStore = create((set: any, get: any) => ({
     { id: "output", type: "out", position: { x: 400, y: 250 } },
   ],
   edges: [
-    { id: "osc->amp", source: "osc", target: "amp" },
+    { id: "osc->amp", source: "prompt", target: "amp" },
     { id: "amp->output", source: "amp", target: "output" },
   ],
   isRunning: isRunning(),
@@ -48,7 +48,7 @@ export const useStore = create((set: any, get: any) => ({
     const id = nanoid();
 
     switch (type) {
-      case "osc": {
+      case "prompt": {
         const data = { frequency: 440, type: "sine" };
         const position = { x: 0, y: 0 };
 

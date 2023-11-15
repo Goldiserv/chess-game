@@ -11,40 +11,48 @@ interface Edge {
 export const useStore = create((set: any, get: any) => ({
   nodes: [
     {
-      id: "osc",
-      type: "osc",
-      data: { frequency: 220, type: "square" },
+      id: "prompt",
+      type: "prompt",
+      data: { value: 'test', type: "gpt4" },
       position: { x: 0, y: 0 },
     },
     {
       id: "amp",
       type: "amp",
-      data: { gain: 10 },
+      selected: true,
+      data: { value: 10 },
       position: { x: 200, y: 100 },
-      dragHandle: '.header-drag-handle',
+      // dragHandle: '.header-drag-handle',
     },
     {
       id: "amp2",
       type: "amp",
-      data: { gain: 15 },
+      data: { value: 15 },
       position: { x: 200, y: 250 },
-      dragHandle: '.header-drag-handle',
+      // dragHandle: '.header-drag-handle',
     },
-    { id: "output", type: "out", position: { x: 400, y: 250 } },
+    {
+      id: "output",
+      type: "out",
+      data: { value: 0 },
+      position: { x: 400, y: 250 },
+    },
   ],
   edges: [
-    { id: "osc->amp", source: "osc", target: "amp" },
-    { id: "amp->output", source: "amp", target: "output", type: 'edgebutton' },
-    { id: "amp2->output", source: "amp2", target: "output", type: 'edgebutton' },
+    { id: "prompt->amp", source: "prompt", target: "amp", type: "edgebutton"  },
+    { id: "amp->output", source: "amp", target: "output", type: "edgebutton" },
+    {
+      id: "amp2->output",
+      source: "amp2",
+      target: "output",
+      type: "edgebutton",
+    },
   ],
   getSelectedEdges() {
     const edges = get().edges;
-
     const filteredEdges = edges.filter((edge) => edge.selected === true);
-
     return filteredEdges;
   },
-  
 
   // calculations
   getPreviousNodes(nodeId: string) {
@@ -64,20 +72,21 @@ export const useStore = create((set: any, get: any) => ({
     });
   },
 
-  createNode(type, x, y) {
+  createNode(type, positionData) {
     const id = nanoid();
 
     switch (type) {
-      case "osc": {
-        const data = { frequency: 440, type: "sine" };
-        const position = { x: 0, y: 0 };
+      case "prompt": {
+        const data = { value: 440, type: "sine" };
+        const position = positionData ? positionData : { x: 0, y: 0 };
         set({ nodes: [...get().nodes, { id, type, data, position }] });
         break;
       }
 
-      case "amp": {
-        const data = { gain: 0.5 };
-        const position = { x: 0, y: 0 };
+      case "amp":
+      case "out": {
+        const data = { value: 0 };
+        const position = positionData ? positionData : { x: 0, y: 0 };
         set({ nodes: [...get().nodes, { id, type, data, position }] });
         break;
       }
@@ -113,9 +122,8 @@ export const useStore = create((set: any, get: any) => ({
     };
 
     const connectedEdges = getConnectedEdges(nodeId);
-    const edgeIds = connectedEdges.map((edge) => edge.id);   
+    const edgeIds = connectedEdges.map((edge) => edge.id);
     get().deleteEdge(edgeIds);
-
   },
 
   onEdgesChange(changes) {
@@ -126,7 +134,7 @@ export const useStore = create((set: any, get: any) => ({
 
   addEdge(data) {
     const id = nanoid(6);
-    const edge = { id, ...data, type: 'edgebutton' };
+    const edge = { id, ...data, type: "edgebutton" };
     set({ edges: [edge, ...get().edges] });
     // add code below for on connect code if required
   },
@@ -145,6 +153,59 @@ export const useStore = create((set: any, get: any) => ({
     for (const { source, target } of deleted) {
       // onAudioDisconnect(source, target);
       console.log("onEdgesDelete", { source, target });
+    }
+  },
+
+  isNodeSelected(id) {
+    const foundNode = get().nodes.find((node) => node.id === id);
+    if (foundNode && foundNode.selected) return foundNode.selected;
+    else return false;
+  },
+
+  // Function to save data to a file
+  saveDataToFile: async () => {
+    const storeData = get(); // Get the current store data
+
+    try {
+      // Convert store data to a string or format suitable for saving to a file
+      const serializedData = JSON.stringify(storeData);
+
+      // Use browser APIs or libraries to save the data to a file (e.g., using FileSaver.js)
+      // Example using FileSaver.js:
+      // import { saveAs } from 'file-saver';
+      // const blob = new Blob([serializedData], { type: 'application/json' });
+      // saveAs(blob, 'storeData.json');
+      
+      // Replace the above code with your preferred method of saving data to a file
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  },
+
+  // Function to load data from a file
+  loadDataFromFile: async (file) => {
+    try {
+      // Use browser APIs or libraries to read the file content (e.g., FileReader)
+      // Example using FileReader:
+      // const fileContent = await new Promise((resolve, reject) => {
+      //   const reader = new FileReader();
+      //   reader.onload = (event) => resolve(event.target.result);
+      //   reader.onerror = (error) => reject(error);
+      //   reader.readAsText(file);
+      // });
+
+      // Replace the above code with your preferred method of reading file content
+      // After reading the file content, parse the data and update the store
+      // For example:
+      // const parsedData = JSON.parse(fileContent);
+      // set(parsedData);
+
+      // Simulated loading for demonstration purposes (replace with your logic)
+      const parsedData = { /* Your parsed data */ };
+      set(parsedData);
+
+    } catch (error) {
+      console.error('Error loading data:', error);
     }
   },
 }));

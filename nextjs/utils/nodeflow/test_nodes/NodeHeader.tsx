@@ -4,17 +4,23 @@ import { tw } from "twind";
 
 interface NodeHeaderProps {
   title: string;
+  className?: string;
   onDelete: () => void;
   // onDragStart: (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const NodeHeader: React.FC<NodeHeaderProps> = ({ title, onDelete }) => {
+const NodeHeader: React.FC<NodeHeaderProps> = ({
+  title,
+  onDelete,
+  className,
+}) => {
   return (
     <div
       className={tw(
         "flex rounded-t-md px-2 py-1 bg-blue-500 text-white text-sm justify-between",
+        className,
         // " cursor-grab",
-        "header-drag-handle"
+        // "header-drag-handle"
       )}
       // onMouseDown={onDragStart} // Handle drag start event
     >
