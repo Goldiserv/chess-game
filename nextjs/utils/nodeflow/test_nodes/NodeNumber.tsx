@@ -3,38 +3,22 @@ import { Handle, Position } from "reactflow";
 import { shallow } from "zustand/shallow";
 import { tw } from "twind";
 import { useStore } from "./store";
-import { useGenericNode } from "./NodeHooks";
-import NodeHeader from "./NodeHeader";
+import NodeContainer from "./NodeContainer";
 
 const selector = (id) => (store) => ({
   setValue: (e) => store.updateNode(id, { value: +e.target.value }),
-  // setSelected: () => {
-  //   console.log('test2', id);
-  //   store.updateNode(id, { selected: true });
-  // },
 });
 
 export default function NumberNode({ id, data }) {
-  const { setValue } = useStore(
-    selector(id),
-    shallow
-  );
-  const { deleteNode, isNodeSelected } = useGenericNode(id);
+  const { setValue } = useStore(selector(id), shallow);
 
   return (
-    <div
-      className={tw(
-        "rounded-md bg-white shadow-xl border-1",
-        isNodeSelected() ? "border-1 border-gray-300" : ""
-      )}
-    >
+    <NodeContainer title={"Number"} id={id} headerClassName="bg-blue-500">
       <Handle
         className={tw("w-2 h-2")}
         type="target"
         position={Position.Left}
       />
-
-      <NodeHeader title="Number" onDelete={deleteNode} />
 
       <div>
         <label className={tw("flex flex-col px-2 pt-1 pb-4 ")}>
@@ -61,6 +45,6 @@ export default function NumberNode({ id, data }) {
         type="source"
         position={Position.Right}
       />
-    </div>
+    </NodeContainer>
   );
 }

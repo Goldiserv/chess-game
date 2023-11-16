@@ -3,8 +3,7 @@ import { Handle, Position } from "reactflow";
 import { shallow } from "zustand/shallow";
 import { tw } from "twind";
 import { useStore } from "./store";
-import { useGenericNode } from "./NodeHooks";
-import NodeHeader from "./NodeHeader";
+import NodeContainer from "./NodeContainer";
 
 const selector = (id) => (store) => ({
   setValue: (e) => {
@@ -14,28 +13,17 @@ const selector = (id) => (store) => ({
 
 export default function Node({ id, data }) {
   const { setValue } = useStore(selector(id), shallow);
-  const { deleteNode, isNodeSelected } = useGenericNode(id);
 
   const setType = () => {
     console.log("todo");
   };
+
   return (
-    <div
-      className={tw(
-        "rounded-md bg-white shadow-xl border-1",
-        isNodeSelected() ? "border-1 border-gray-300" : ""
-      )}
-    >
+    <NodeContainer title={"Prompt"} id={id}>
       <Handle
         className={tw("w-2 h-2")}
         type="target"
         position={Position.Left}
-      />
-
-      <NodeHeader
-        title="Prompt"
-        onDelete={deleteNode}
-        className="bg-green-500"
       />
 
       <div>
@@ -67,7 +55,7 @@ export default function Node({ id, data }) {
         type="source"
         position={Position.Right}
       />
-    </div>
+    </NodeContainer>
   );
 }
 

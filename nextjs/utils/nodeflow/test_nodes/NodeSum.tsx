@@ -3,8 +3,7 @@ import { Handle, Position } from "reactflow";
 import { shallow } from "zustand/shallow";
 import { useStore } from "./store";
 import { tw } from "twind";
-import NodeHeader from "./NodeHeader";
-import { useGenericNode } from "./NodeHooks";
+import NodeContainer from "./NodeContainer";
 
 const selector = (store) => ({
   getPreviousNodes: store.getPreviousNodes,
@@ -16,24 +15,16 @@ const selector = (store) => ({
 export default function Out({ id, data }) {
   // const { getPreviousNodes, storeValue } = useStore(selector(id), shallow);
   const { getPreviousNodes, storeValue } = useStore(selector, shallow);
-  const { deleteNode, isNodeSelected } = useGenericNode(id);
 
   const [value, setValue] = useState(0);
 
   return (
-    <div
-      className={tw(
-        "rounded-md bg-white shadow-xl border-1",
-        isNodeSelected() ? "border-1 border-gray-300" : ""
-      )}
-    >
+    <NodeContainer title={"Number"} id={id} headerClassName="bg-blue-500">
       <Handle
         className={tw("w-2 h-2")}
         type="target"
         position={Position.Left}
       />
-
-      <NodeHeader title="Sum" onDelete={deleteNode} className="bg-yellow-600"/>
 
       <div className={tw("rounded-md bg-white shadow-xl px-4 py-2")}>
         <div className="flex justify-between">
@@ -68,6 +59,6 @@ export default function Out({ id, data }) {
           position={Position.Right}
         />
       </div>
-    </div>
+    </NodeContainer>
   );
 }
