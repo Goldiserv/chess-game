@@ -48,6 +48,18 @@ export default function Node({ id, data }) {
             <option value="gpt4">GPT4</option>
           </select>
         </label>
+
+        <label className={tw("flex flex-col px-2 pt-1 pb-4 ")}>
+          <div className="flex justify-between">
+            <p className={tw("text-xs font-bold mb-2")}>Result</p>
+          </div>
+          <input
+            className={tw("nodrag border-1 rounded pl-1")}
+            type="text"
+            // defaultValue={data.value}
+            // onChange={setValue}
+          />
+        </label>
       </div>
 
       <Handle
@@ -57,16 +69,4 @@ export default function Node({ id, data }) {
       />
     </NodeContainer>
   );
-}
-
-{
-  /* <label className={tw("flex flex-col px-2 pt-1 pb-4")}>
-        <p className={tw("text-xs font-bold mb-2")}>Text</p>
-        <select className="nodrag" value={data.type} onChange={setType}>
-          <option value="sine">sine</option>
-          <option value="triangle">triangle</option>
-          <option value="sawtooth">sawtooth</option>
-          <option value="gpt4">square</option>
-        </select>
-      </label> */
 }

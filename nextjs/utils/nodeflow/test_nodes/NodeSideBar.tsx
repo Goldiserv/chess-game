@@ -33,6 +33,10 @@ export default () => {
             onDragStart={(event) => onDragStart(event, 'out')} draggable>
             Sum Node
           </div>
+          <div className={tw("bg-white p-2 rounded-md shadow-md mb-2")} 
+            onDragStart={(event) => onDragStart(event, 'text')} draggable>
+            Text Node
+          </div>
         </>
       )}
       <button 

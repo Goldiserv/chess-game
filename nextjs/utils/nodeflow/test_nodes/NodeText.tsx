@@ -6,34 +6,34 @@ import { useStore } from "./store";
 import NodeContainer from "./NodeContainer";
 
 const selector = (id) => (store) => ({
-  setValue: (e) => store.updateNode(id, { value: +e.target.value }),
+  setValue: (e) => store.updateNode(id, { value: e.target.value }),
 });
 
 function Node({ id, data }) {
   const { setValue } = useStore(selector(id), shallow);
 
   return (
-    <NodeContainer title={"Number"} id={id} headerClassName="bg-blue-500">
+    <NodeContainer title={"Text"} id={id} headerClassName="bg-blue-500">
       <Handle
         className={tw("w-2 h-2")}
         type="target"
         position={Position.Left}
       />
 
+<Handle
+        className={tw("w-2 h-2")}
+        type="source"
+        position={Position.Right}
+      />
+
       <div>
         <label className={tw("flex flex-col px-2 pt-1 pb-4 ")}>
           <div className="flex justify-between">
-            <p className={tw("text-xs font-bold mb-2")}>Value</p>
-            <p className={tw("text-right text-xs")}>{data.value}</p>
+            <p className={tw("text-xs font-bold mb-2")}>Text</p>
           </div>
-          {/* <p className={tw("text-right text-xs")}>
-            {isNodeSelected() ? "selected" : "not selected"}
-          </p> */}
           <input
             className="nodrag"
-            type="range"
-            min="0"
-            max="100"
+            type="text"
             value={data.value}
             onChange={setValue}
           />

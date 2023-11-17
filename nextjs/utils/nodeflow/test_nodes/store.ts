@@ -13,8 +13,32 @@ export const useStore = create((set: any, get: any) => ({
     {
       id: "prompt",
       type: "prompt",
-      data: { value: 'test', type: "gpt4" },
-      position: { x: 0, y: 0 },
+      data: {
+        nodeSections: {
+          "prompt-generatedId-handle-0": {
+            label: "Prompt",
+            value: "your prompt",
+            dataType: "string",
+            sectionType: "textbox",
+            handle: "target",
+          },
+          "prompt-generatedId-handle-1": {
+            label: "AI Engine",
+            value: "gpt4",
+            dataType: "string",
+            sectionType: "dropdown",
+            // handle: "target",
+          },
+          "prompt-generatedId-handle-2": {
+            label: "Output",
+            value: "output",
+            dataType: "string",
+            sectionType: "textbox",
+            handle: "source",
+          },
+        },
+      },
+      position: { x: -100, y: 0 },
     },
     {
       id: "amp",
@@ -37,9 +61,16 @@ export const useStore = create((set: any, get: any) => ({
       data: { value: 0 },
       position: { x: 400, y: 250 },
     },
+    {
+      id: "text1",
+      type: "text",
+      data: { value: "my text" },
+      position: { x: -350, y: 50 },
+    },
   ],
   edges: [
-    { id: "prompt->amp", source: "prompt", target: "amp", type: "edgebutton"  },
+    // { id: "prompt->amp", source: "prompt", target: "amp", type: "edgebutton" },
+    { id: "text->prompt", source: "text1", target: "prompt", targetHandle: "prompt-generatedId-handle-0", type: "edgebutton" },
     { id: "amp->output", source: "amp", target: "output", type: "edgebutton" },
     {
       id: "amp2->output",
@@ -77,7 +108,7 @@ export const useStore = create((set: any, get: any) => ({
 
     switch (type) {
       case "prompt": {
-        const data = { value: 440, type: "sine" };
+        const data = { value: "your prompt", type: "gpt4" };
         const position = positionData ? positionData : { x: 0, y: 0 };
         set({ nodes: [...get().nodes, { id, type, data, position }] });
         break;
@@ -86,6 +117,13 @@ export const useStore = create((set: any, get: any) => ({
       case "amp":
       case "out": {
         const data = { value: 0 };
+        const position = positionData ? positionData : { x: 0, y: 0 };
+        set({ nodes: [...get().nodes, { id, type, data, position }] });
+        break;
+      }
+
+      case "text": {
+        const data = { value: "your text" };
         const position = positionData ? positionData : { x: 0, y: 0 };
         set({ nodes: [...get().nodes, { id, type, data, position }] });
         break;
@@ -133,10 +171,10 @@ export const useStore = create((set: any, get: any) => ({
   },
 
   addEdge(data) {
+    // console.log({ data });
     const id = nanoid(6);
     const edge = { id, ...data, type: "edgebutton" };
     set({ edges: [edge, ...get().edges] });
-    // add code below for on connect code if required
   },
 
   deleteEdge(edgeIds: string | string[]) {
@@ -175,10 +213,10 @@ export const useStore = create((set: any, get: any) => ({
       // import { saveAs } from 'file-saver';
       // const blob = new Blob([serializedData], { type: 'application/json' });
       // saveAs(blob, 'storeData.json');
-      
+
       // Replace the above code with your preferred method of saving data to a file
     } catch (error) {
-      console.error('Error saving data:', error);
+      console.error("Error saving data:", error);
     }
   },
 
@@ -201,11 +239,12 @@ export const useStore = create((set: any, get: any) => ({
       // set(parsedData);
 
       // Simulated loading for demonstration purposes (replace with your logic)
-      const parsedData = { /* Your parsed data */ };
+      const parsedData = {
+        /* Your parsed data */
+      };
       set(parsedData);
-
     } catch (error) {
-      console.error('Error loading data:', error);
+      console.error("Error loading data:", error);
     }
   },
 }));

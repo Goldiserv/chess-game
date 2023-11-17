@@ -1,25 +1,26 @@
-import React, { useState } from "react";
-import { Handle, Position } from "reactflow";
+import React, { useState, memo } from "react";
+import { Handle, Position, getIncomers } from "reactflow";
 import { shallow } from "zustand/shallow";
 import { useStore } from "./store";
 import { tw } from "twind";
 import NodeContainer from "./NodeContainer";
 
 const selector = (store) => ({
-  getPreviousNodes: store.getPreviousNodes,
+  getPreviousNodes: (id) => store.getPreviousNodes(id),
   storeValue: (id, data) => {
     store.updateNode(id, data);
   },
+  nodes: store.nodes,
 });
 
-export default function Out({ id, data }) {
+function Node({ id, data }) {
   // const { getPreviousNodes, storeValue } = useStore(selector(id), shallow);
-  const { getPreviousNodes, storeValue } = useStore(selector, shallow);
+  const { nodes, getPreviousNodes, storeValue } = useStore(selector, shallow);
 
   const [value, setValue] = useState(0);
 
   return (
-    <NodeContainer title={"Number"} id={id} headerClassName="bg-blue-500">
+    <NodeContainer title={"Sum"} id={id} headerClassName="bg-blue-500">
       <Handle
         className={tw("w-2 h-2")}
         type="target"
@@ -62,3 +63,5 @@ export default function Out({ id, data }) {
     </NodeContainer>
   );
 }
+
+export default memo(Node);
