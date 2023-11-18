@@ -27,7 +27,7 @@ export const useStore = create((set: any, get: any) => ({
             value: "gpt4",
             dataType: "string",
             sectionType: "dropdown",
-            // handle: "target",
+            // handle: "none",
           },
           "prompt-generatedId-handle-2": {
             label: "Output",
@@ -53,7 +53,6 @@ export const useStore = create((set: any, get: any) => ({
       type: "amp",
       data: { value: 15 },
       position: { x: 200, y: 250 },
-      // dragHandle: '.header-drag-handle',
     },
     {
       id: "output",
