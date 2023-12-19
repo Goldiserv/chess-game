@@ -1,13 +1,11 @@
-import axios from "axios";
+// import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-// import { client } from "@gradio/client";
 import util from "util";
 
 export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  // console.log("CALLING API AT test-3");
   try {
     if (req.method === "GET") {
       console.log("CALLING API AT test-3 GET");
