@@ -54,59 +54,12 @@ const IndexPage = () => (
         <li>
           <Link href="/whatsapp">WhatsApp</Link>
         </li>
+        <b>Other</b>
         <li>
           <Link href="/nodeflow">nodeflow</Link>
         </li>
-      </ul>
-
-      <h2>Project ideas</h2>
-      <ul>
-        <li> SMS sender/receiver </li>
         <li>
-          AI / automation
-          <ul>
-            <li>Watch screen and log inputs to automate tasks</li>
-            <li>Sharpen a paragraph of text</li>
-            <li>Get dates ready for Excel</li>
-            <li>Pixel art generator</li>
-            <li>Voice transformation</li>
-          </ul>
-        </li>
-        <li>
-          Speech
-          <ul>
-            <li>TTS</li>
-            <li>Animated lip-sync</li>
-          </ul>
-        </li>
-        <li>
-          Video call
-          <ul>
-            <li>Elder listening service</li>
-            <li>
-              Omegle but with rules to help w long term relationship building
-            </li>
-          </ul>
-        </li>
-        <li> Stripe payment </li>
-        <li>
-          Auth
-          <ul>
-            <li>Sign in w Google</li>
-          </ul>
-        </li>
-        <li>
-          Games
-          <ul>
-            <li>Pong</li>
-          </ul>
-        </li>
-        <li>
-          Finance
-          <ul>
-            <li>Managed fund lookup</li>
-            <li>Read financial statement</li>
-          </ul>
+          <Link href="/api-tests">Api Tests</Link>
         </li>
       </ul>
     </article>
